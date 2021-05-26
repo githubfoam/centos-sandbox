@@ -2,7 +2,7 @@
 
 
 Travis (.com) branch:
-[![Build Status](https://travis-ci.com/githubfoam/centos-sandbox.svg?branch=master)](https://travis-ci.com/githubfoam/centos-sandbox)  
+[![Build Status](https://travis-ci.com/githubfoam/centos-sandbox.svg?branch=main)](https://travis-ci.com/githubfoam/centos-sandbox)  
 
 ~~~~
 >vagrant init --template Vagrantfile.provision.bash.erb
