@@ -1,0 +1,83 @@
+-*- mode: ruby -*-
+vi: set ft=ruby :
+
+Vagrant.configure(2) do |config|
+  config.vm.box_check_update = false
+
+  vbox template for all vagranth instances
+  config.vm.provider "virtualbox" do |vb|
+    vb.gui = false
+    vb.memory = "512"
+    vb.cpus = 2
+  end
+
+            config.vm.define "vg-fedora-01" do |k8scluster|
+              k8scluster.vm.box = "bento/fedora-33"
+              k8scluster.vm.hostname = "vg-fedora-01"
+              k8scluster.vm.network "private_network", ip: "192.168.50.14"                                
+              k8scluster.vm.provider "virtualbox" do |vb|
+                  vb.name = "vbox-fedora-01"
+                  vb.memory = "4096"
+              end
+              k8scluster.vm.provision :shell, path: "provisioning/bootstrap.sh"
+            end
+             config.vm.define "vg-fedora-02" do |k8scluster|
+                k8scluster.vm.box = "fedora/34-cloud-base"
+                k8scluster.vm.hostname = "vg-fedora-02"
+                k8scluster.vm.network "private_network", ip: "192.168.50.15"                                
+                k8scluster.vm.provider "virtualbox" do |vb|
+                    vb.name = "vbox-fedora-02"
+                    vb.memory = "4096"
+                end
+                k8scluster.vm.provision :shell, path: "provisioning/bootstrap.sh"
+              end
+            
+            
+              config.vm.define "vg-centos-03" do |k8scluster|
+                k8scluster.vm.box = "centos/8"
+                k8scluster.vm.hostname = "vg-centos-03"
+                k8scluster.vm.network "private_network", ip: "192.168.50.16"                                
+                k8scluster.vm.provider "virtualbox" do |vb|
+                    vb.name = "vbox-centos-03"
+                    vb.memory = "4096"
+                end
+                k8scluster.vm.provision :shell, path: "provisioning/bootstrap.sh"
+              end
+
+
+              config.vm.define "vg-centos-04" do |k8scluster|
+                k8scluster.vm.box = "bento/centos-8.3"
+                k8scluster.vm.hostname = "vg-centos-04"
+                k8scluster.vm.network "private_network", ip: "192.168.50.17"                                
+                k8scluster.vm.provider "virtualbox" do |vb|
+                    vb.name = "vbox-centos-04"
+                    vb.memory = "4096"
+                end
+                k8scluster.vm.provision :shell, path: "provisioning/bootstrap.sh"
+              end
+
+              config.vm.define "vg-centos-05" do |k8scluster|
+                k8scluster.vm.box = "centos/stream8"
+                k8scluster.vm.hostname = "vg-centos-05"
+                k8scluster.vm.network "private_network", ip: "192.168.50.18"                                
+                k8scluster.vm.provider "virtualbox" do |vb|
+                    vb.name = "vbox-centos-05"
+                    vb.memory = "4096"
+                end
+                k8scluster.vm.provision :shell, path: "provisioning/bootstrap.sh"
+              end
+              
+              #NOT OK
+              # config.vm.define "vg-centos-06" do |k8scluster|
+              #   k8scluster.vm.box = "bento/centos-stream-8"
+              #   k8scluster.vm.hostname = "vg-centos-06"
+              #   k8scluster.vm.network "private_network", ip: "192.168.50.19"                                
+              #   k8scluster.vm.provider "virtualbox" do |vb|
+              #       vb.name = "vbox-centos-06"
+              #       vb.memory = "4096"
+              #   end
+              #   k8scluster.vm.provision :shell, path: "provisioning/bootstrap.sh"
+              # end
+              
+              
+end
