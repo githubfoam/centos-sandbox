@@ -11,27 +11,7 @@ Vagrant.configure(2) do |config|
     vb.cpus = 2
   end
 
-            config.vm.define "vg-fedora-01" do |k8scluster|
-              k8scluster.vm.box = "bento/fedora-33"
-              k8scluster.vm.hostname = "vg-fedora-01"
-              k8scluster.vm.network "private_network", ip: "192.168.50.14"                                
-              k8scluster.vm.provider "virtualbox" do |vb|
-                  vb.name = "vbox-fedora-01"
-                  vb.memory = "4096"
-              end
-              k8scluster.vm.provision :shell, path: "provisioning/bootstrap.sh"
-            end
-             config.vm.define "vg-fedora-02" do |k8scluster|
-                k8scluster.vm.box = "fedora/34-cloud-base"
-                k8scluster.vm.hostname = "vg-fedora-02"
-                k8scluster.vm.network "private_network", ip: "192.168.50.15"                                
-                k8scluster.vm.provider "virtualbox" do |vb|
-                    vb.name = "vbox-fedora-02"
-                    vb.memory = "4096"
-                end
-                k8scluster.vm.provision :shell, path: "provisioning/bootstrap.sh"
-              end
-            
+          
             
               config.vm.define "vg-centos-03" do |k8scluster|
                 k8scluster.vm.box = "centos/8"
